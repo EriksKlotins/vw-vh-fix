@@ -40,7 +40,7 @@
 			
 			for(var i=0;i<mediaQueryStack.length;i++)
 			{
-				//console.log(mediaQueryStack[i]);
+				//// console.log(mediaQueryStack[i]);
 				mediaQueryStack[i].replace(/(max-width|min-width)([^)]+)/g, function(a,property,value)
 				{
 
@@ -54,7 +54,7 @@
 							result = result && (vw <= value);
 						break;
 						default:
-							console.warn('Property ',property,' is not supported');
+							// console.warn('Property ',property,' is not supported');
 					}
 
 				});
@@ -62,7 +62,7 @@
 			}
 			var t1 = new Date().getTime();
 
-			//console.log('media ', mediaQueryStack, vw, result);
+			//// console.log('media ', mediaQueryStack, vw, result);
 			return result;
 		}
 
@@ -102,13 +102,13 @@
 			// ieraksti. Te varētu būt bugi, ja nāk klāt jauni propertiji..
 		
 			var mediaQueryResult = evaluateMediaQuery(mediaBuf);
-			//console.log('herhe' ,mediaBuf,mediaQueryResult,buf);
+			//// console.log('herhe' ,mediaBuf,mediaQueryResult,buf);
 			if (mediaQueryResult)
 			{
 				//result += buf + String.fromCharCode(13)+String.fromCharCode(10);
 				result[ruleModel[i].selector] = buf;
-			//	console.log(buf);
-				//console.log(ruleModel[i].selector, buf);
+			//	// console.log(buf);
+				//// console.log(ruleModel[i].selector, buf);
 			}
 		}	
 		
@@ -143,7 +143,7 @@
 				});
 			});
 			var t1 = new Date().getTime();
-			//console.log('Parse rules ', t1-t0,' ms');
+			//// console.log('Parse rules ', t1-t0,' ms');
 			return result;
 		}
 
@@ -164,12 +164,12 @@
 				var currentSelector = '';
 				var mediaSelectorStack = (stackBuf.length>1) ? stackBuf[stackBuf.length-1].mediaSelector : [];
 				
-				//console.log('braceLevel', braceLevel);
+				//// console.log('braceLevel', braceLevel);
 				if (braceLevel > 0)
 				{
-					console.log(cssToParse);
+					// console.log(cssToParse);
 				}
-				//console.log('css',cssToParse.length );
+				//// console.log('css',cssToParse.length );
 
 
 				for (var index=loopStart;index<cssToParse.length;index++)
@@ -180,10 +180,10 @@
 						if (chr == '{')
 						{
 							currentSelector = buf.trim();
-							//console.log('currentSelector = ', currentSelector);    
+							//// console.log('currentSelector = ', currentSelector);    
 							buf = '{';
 							braceLevel = 1;
-							//console.log('currentSelector ', currentSelector);
+							//// console.log('currentSelector ', currentSelector);
 						}
 						else
 						{
@@ -198,7 +198,7 @@
 						//if (braceLevel == 0)
 						if (chr == '}') // sasniegtas kaut kāda bloka beigas
 						{
-							console.log('crs', currentSelector);
+							// console.log('crs', currentSelector);
 							if (currentSelector.match(/@media/))
 							{
 								buf = buf.substr(1, buf.length-1);							
@@ -206,8 +206,8 @@
 								
 								//currentSelector = currentSelector.replace(/}/,'' ).trim();
 								mediaSelectorStack.push(currentSelector);
-								console.log('buf = ', buf.charAt(0));
-								// console.log(currentSelector);
+								// console.log('buf = ', buf.charAt(0));
+								// // console.log(currentSelector);
 								stackBuf.push({
 										cssToParse: buf, 
 										index:0, 
@@ -228,7 +228,7 @@
 										rules  		: rulesArr
 
 									};
-									console.log(immediateResult);
+									// console.log(immediateResult);
 									result.push(immediateResult);
 								}
 							}
@@ -241,14 +241,14 @@
 					if (index == cssToParse.length-1)
 					{
 						
-						//console.log(stackBuf);
+						//// console.log(stackBuf);
 						//return;
 						
 						if (stackBuf.length > 0)
 						{
 							stackBuf.pop();
-							//console.log ('Setting index to: ',stackBuf[stackBuf.length-1].index )
-							//console.log(stackBuf);
+							//// console.log ('Setting index to: ',stackBuf[stackBuf.length-1].index )
+							//// console.log(stackBuf);
 							if (stackBuf.length>0)
 							{
 								index = stackBuf[stackBuf.length-1].index;
@@ -256,7 +256,7 @@
 							
 
 						}
-					//	console.log('reached end of some block..', cssToParse);
+					//	// console.log('reached end of some block..', cssToParse);
 						
 						
 					}
@@ -269,7 +269,7 @@
 			
 		}
 		walker(cssText);
-		console.log('Model = ',result);
+		// console.log('Model = ',result);
 		return result;
 	}
 
@@ -295,7 +295,7 @@
 				});
 			});
 			//var t1 = new Date().getTime();
-			//console.log('Parse rules ', t1-t0,' ms');
+			//// console.log('Parse rules ', t1-t0,' ms');
 			return result;
 		}
 
@@ -362,7 +362,7 @@
 				buf += chr;
 			}
 		}
-		console.log('Timing ', tPush, tPop);
+		// console.log('Timing ', tPush, tPop);
 		return stack;
 	}
 
@@ -375,7 +375,7 @@
 		var t0 = new Date().getTime();
 		var cssModel = parseCSS(cssText);
 		var t1 = new Date().getTime();
-		console.info('parsing: ', t1-t0, ' ms');
+		// console.info('parsing: ', t1-t0, ' ms');
 		return cssModel;
 	}
 
@@ -414,20 +414,20 @@
 			var href = document.styleSheets[i].href;
 			if(href)
 			{
-				//console.log(document.location);
+				//// console.log(document.location);
 				if (href.indexOf( window.location.protocol+"//"+window.location.host)===0)
 				{
 					result.push(href);
 				}
 				else
 				{
-					console.log('Skipped: ', href);
+					// console.log('Skipped: ', href);
 				}
 				
 			}
 			else
 			{
-				console.warn('Inline styles not supported! Yet..')
+				// console.warn('Inline styles not supported! Yet..')
 			}
 		}
 		return result;
@@ -445,11 +445,11 @@
 		}
 		catch(e)
 		{
-			// console.warn('Failed to load ', href);
+			// // console.warn('Failed to load ', href);
 		}
 		
 		result = result.replace(/(\/\*[^*]*\*+([^\/][^*]*\*+)*\/)\s*/g, '');
-		// console.log(href, result.substr(0,100));
+		// // console.log(href, result.substr(0,100));
 		return result;
 	}
 
@@ -479,7 +479,7 @@
 		var cssText = loadStyleSheet(sheets[i]);
 		var t1 = new Date().getTime();
 
-		// console.log('Stylesheet loading: ', t1-t0, ' ms');
+		// // console.log('Stylesheet loading: ', t1-t0, ' ms');
 		model = model.concat(parseStyleSheet(cssText));
 		
 	}
@@ -505,7 +505,7 @@
 		
 		head.appendChild(style);
 		var t1 = new Date().getTime();
-		//console.log('Inject: ', t1-t0, ' ms');
+		//// console.log('Inject: ', t1-t0, ' ms');
 
 	}
 
@@ -518,7 +518,7 @@
 	var t0 = new Date().getTime();
 	injectStyleNode();
 	var t1 = new Date().getTime();
-	console.log('Reengineering time: ', t1-t0, ' ms');
+	// console.log('Reengineering time: ', t1-t0, ' ms');
 
 })(window);
 
@@ -543,7 +543,7 @@
 				});
 			});
 			var t1 = new Date().getTime();
-			//console.log('Parse rules ', t1-t0,' ms');
+			//// console.log('Parse rules ', t1-t0,' ms');
 			return result;
 		}
 

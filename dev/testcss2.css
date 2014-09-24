@@ -35,6 +35,17 @@ h1
 	}
 }
 
+.third
+{
+	width: 50vmin;
+	height: 50vmin;
+}
+
+.fourth
+{
+	width: 50vmax;
+	height: 50vmax;
+}
 
 span
 {
