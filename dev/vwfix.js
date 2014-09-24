@@ -523,7 +523,7 @@
 })(window);
 
 /*
-
+	// rekursīvā versija
 	function parseCSS(cssText)
 	{
 		var result = [],mediaSelecorStack = [];
