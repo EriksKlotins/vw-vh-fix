@@ -1,0 +1,42 @@
+p
+{
+	margin:0;
+}
+
+h1
+{
+	font-size: 10vw;
+}
+.block
+{
+	background: yellow;
+	padding:10px;
+	margin:20px 0;
+}
+
+@media screen and (min-width: 500px)
+{
+	.first
+	{
+		width: 50vw;
+		height: 50vw;
+	}
+	@media screen and (max-width: 700px)
+	{
+		.second
+		{
+			width: 52vh;
+			height: 52vh;
+		}
+	}
+	.second
+	{
+		border:2px solid black;
+	}
+}
+
+
+span
+{
+	color:red;
+}
